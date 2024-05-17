@@ -27,7 +27,15 @@ public class Player : MonoBehaviour
         sprite.flipX = nextVec.x < 0;
         anim.SetFloat("Speed", nextVec.magnitude);
 
+        Jump();
+    }
+    void Jump()
+    {
+        if (anim.GetBool("isJump"))
+            return;
+
         rigid.AddForce(jumpVec * jumpPower);
+        anim.SetFloat("Jump", rigid.velocity.y);
     }
     void OnMove(InputValue value)
     {
@@ -35,6 +43,8 @@ public class Player : MonoBehaviour
     }
     void OnJump(InputValue value)
     {
-        jumpVec = value.Get<Vector2>();
+        //jumpVec = value.Get<Vector2>();
+        jumpVec = Vector2.up;
+        anim.SetBool("isJump", true);
     }
 }
