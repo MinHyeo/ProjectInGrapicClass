@@ -22,12 +22,16 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        // 이동 구현
+        Move();
+        // 점프 구현
+        Jump();
+    }
+    private void Move()
+    {
         Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime;
         transform.Translate(nextVec, Space.World);
-        sprite.flipX = nextVec.x < 0;
         anim.SetFloat("Speed", nextVec.magnitude);
-
-        Jump();
     }
     void Jump()
     {
@@ -35,16 +39,17 @@ public class Player : MonoBehaviour
             return;
 
         rigid.AddForce(jumpVec * jumpPower);
+        anim.SetBool("isJump", true);
         anim.SetFloat("Jump", rigid.velocity.y);
     }
     void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();
+        sprite.flipX = inputVec.x < 0;
     }
     void OnJump(InputValue value)
     {
         //jumpVec = value.Get<Vector2>();
         jumpVec = Vector2.up;
-        anim.SetBool("isJump", true);
     }
 }
