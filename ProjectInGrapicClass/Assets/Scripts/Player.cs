@@ -29,12 +29,6 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Debug.DrawRay(rigid.position, Vector2.down,new Color(1, 0, 0), 0.5f);
-        if (Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayer))
-        {
-            Debug.Log("땅에 충돌");
-            anim.SetBool("isJump", false);
-        }
         // 이동 구현
         Move();
         // 점프 구현
@@ -46,14 +40,16 @@ public class Player : MonoBehaviour
         transform.Translate(nextVec, Space.World);
         anim.SetFloat("Speed", nextVec.magnitude);
     }
-    void Jump()
+    private void Jump()
     {
-        if (anim.GetBool("isJump"))
-            return;
-
-        rigid.AddForce(jumpVec * jumpPower);
-        anim.SetBool("isJump", true);
-        anim.SetFloat("Jump", rigid.velocity.y);
+        if (Physics2D.Raycast(transform.position, Vector2.down, 0.4f, groundLayer))
+        {
+            anim.SetBool("isJump", false);
+        }
+        else
+        {
+            anim.SetFloat("Jump", rigid.velocity.y);
+        }
     }
     void OnMove(InputValue value)
     {
@@ -62,6 +58,20 @@ public class Player : MonoBehaviour
     }
     void OnJump(InputValue value)
     {
-        jumpVec = Vector2.up;
+        if (anim.GetBool("isJump"))
+            return;
+
+        rigid.velocity = Vector2.up * jumpPower;
+        anim.SetBool("isJump", true);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IEatAble eatAble = collision.GetComponent<IEatAble>();
+        if (eatAble != null)
+        {
+            eatAble.Eat();
+            collision.gameObject.SetActive(false);
+            GameManager.instance.CoinSpawn();
+        }
     }
 }
