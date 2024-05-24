@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     SpriteRenderer sprite;
     Animator anim;
 
+    bool isJump = false;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -42,13 +44,9 @@ public class Player : MonoBehaviour
     }
     private void Jump()
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 0.4f, groundLayer))
-        {
-            anim.SetBool("isJump", false);
-        }
-        else
-        {
-            anim.SetFloat("Jump", rigid.velocity.y);
+        if (Physics2D.Raycast(transform.position, Vector2.down, 0.6f, groundLayer)) {
+            Debug.Log("∂• ¡¢√À");
+            isJump = false;
         }
     }
     void OnMove(InputValue value)
@@ -58,11 +56,11 @@ public class Player : MonoBehaviour
     }
     void OnJump(InputValue value)
     {
-        if (anim.GetBool("isJump"))
+        if (isJump)
             return;
 
         rigid.velocity = Vector2.up * jumpPower;
-        anim.SetBool("isJump", true);
+        isJump = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
