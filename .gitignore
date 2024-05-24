@@ -2,17 +2,17 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-ProjectInGrapicClass/[Ll]ibrary/
-ProjectInGrapicClass/[Tt]emp/
-ProjectInGrapicClass/[Oo]bj/
-ProjectInGrapicClass/[Bb]uild/
-ProjectInGrapicClass/[Bb]uilds/
-ProjectInGrapicClass/[Ll]ogs/
-ProjectInGrapicClass/[Uu]ser[Ss]ettings/
+GrapicsProject/[Ll]ibrary/
+GrapicsProject/[Tt]emp/
+GrapicsProject/[Oo]bj/
+GrapicsProject/[Bb]uild/
+GrapicsProject/[Bb]uilds/
+GrapicsProject/[Ll]ogs/
+GrapicsProject/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
-ProjectInGrapicClass/[Mm]emoryCaptures/
+GrapicsProject/[Mm]emoryCaptures/
 
 # Recordings can get excessive in size
 /[Rr]ecordings/
@@ -65,8 +65,8 @@ sysinfo.txt
 crashlytics-build.properties
 
 # Packed Addressables
-ProjectInGrapicClass/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+GrapicsProject/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Temporary auto-generated Android Assets
-ProjectInGrapicClass/[Aa]ssets/[Ss]treamingAssets/aa.meta
-ProjectInGrapicClass/[Aa]ssets/[Ss]treamingAssets/aa/*
+GrapicsProject/[Aa]ssets/[Ss]treamingAssets/aa.meta
+GrapicsProject/[Aa]ssets/[Ss]treamingAssets/aa/*
