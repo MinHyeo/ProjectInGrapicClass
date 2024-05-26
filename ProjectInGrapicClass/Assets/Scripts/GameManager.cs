@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         level = 0;
         score = 0;
 
-        //CoinSpawn();
+        Invoke("CoinSpawn", 0.1f);
     }
     private void FixedUpdate()
     {
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     }
     public void CoinSpawn()
     {
+        if()
         int rand = Random.Range(0, spawners.Length);
         ObjectPooling.instance.Get(0).transform.position = spawners[rand].position;
     }

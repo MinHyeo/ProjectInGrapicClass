@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     SpriteRenderer sprite;
     Animator anim;
 
-    bool isJump = false;
 
     private void Awake()
     {
@@ -33,21 +32,12 @@ public class Player : MonoBehaviour
     {
         // 이동 구현
         Move();
-        // 점프 구현
-        Jump();
     }
     private void Move()
     {
         Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime;
         transform.Translate(nextVec, Space.World);
         anim.SetFloat("Speed", nextVec.magnitude);
-    }
-    private void Jump()
-    {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 0.6f, groundLayer)) {
-            Debug.Log("땅 접촉");
-            isJump = false;
-        }
     }
     void OnMove(InputValue value)
     {
@@ -56,11 +46,10 @@ public class Player : MonoBehaviour
     }
     void OnJump(InputValue value)
     {
-        if (isJump)
+        if (rigid.velocity.y != 0)
             return;
 
         rigid.velocity = Vector2.up * jumpPower;
-        isJump = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
