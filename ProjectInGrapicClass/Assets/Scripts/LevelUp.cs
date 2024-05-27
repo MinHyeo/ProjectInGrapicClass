@@ -6,5 +6,6 @@ public class LevelUp : MonoBehaviour, IEatAble
 {
     public void Eat() {
         GameManager.instance.level++;
+        GameManager.instance.ghost.LevelUp();
     }
 }

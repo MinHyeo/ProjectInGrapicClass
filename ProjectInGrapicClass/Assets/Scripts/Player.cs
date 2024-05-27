@@ -58,7 +58,8 @@ public class Player : MonoBehaviour
         {
             eatAble.Eat();
             collision.gameObject.SetActive(false);
-            GameManager.instance.CoinSpawn();
+
+            GameManager.instance.EatItem();
         }
     }
 }

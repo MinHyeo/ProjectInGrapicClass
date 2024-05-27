@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Ghost : MonoBehaviour
 {
+    public float baseSpeed = 2f;
     public float speed;
+    float[] speedUp = { 1.1f, 1.2f, 1.4f, 1.6f, 1.8f, 2.0f };
 
     public Rigidbody2D playerRigid;
     Rigidbody2D rigid;
@@ -22,6 +24,9 @@ public class Ghost : MonoBehaviour
         rigid.velocity = playerVec.normalized * speed;
 
         sprite.flipX = playerVec.x < 0;
+    }
+    public void LevelUp() {
+        speed = baseSpeed * speedUp[GameManager.instance.level];
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
