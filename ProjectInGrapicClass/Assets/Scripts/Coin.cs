@@ -14,5 +14,6 @@ public class Coin : MonoBehaviour, IEatAble
     public void Eat()
     {
         GameManager.instance.score += score;
+        GameManager.instance.ScoreUpdate();
     }
 }

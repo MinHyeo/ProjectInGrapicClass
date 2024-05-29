@@ -40,7 +40,6 @@ public class ObjectPooling : MonoBehaviour
         {
             pool = Instantiate(prefabs[index], transform);
         }
-            
 
         return pool;
     }
